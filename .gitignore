@@ -1,0 +1,8 @@
+.playwright-cli/
+codex-builder.jsonl
+codex-builder-last.txt
+dist/
+node_modules/
+.DS_Store
+run-gauntlet.command
+run-gauntlet.sh

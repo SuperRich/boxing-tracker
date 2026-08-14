@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="A fast, local-first boxing training log.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Corner — Boxing Log</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">TRAINING LOG</span>
+        <h1>CORNER<span>.</span></h1>
+      </div>
+      <div class="today-badge" id="todayBadge"></div>
+    </header>
+
+    <section id="logView" class="view active" aria-labelledby="logTitle">
+      <div class="session-head">
+        <div>
+          <p class="section-kicker">TODAY'S WORK</p>
+          <h2 id="logTitle">What landed?</h2>
+        </div>
+        <div class="rounds-control" aria-label="Rounds completed">
+          <button id="roundMinus" aria-label="Remove a round">−</button>
+          <div><strong id="roundCount">6</strong><span>ROUNDS</span></div>
+          <button id="roundPlus" aria-label="Add a round">+</button>
+        </div>
+      </div>
+
+      <div class="stance-row" role="group" aria-label="Stance">
+        <button class="stance active" data-stance="orthodox">ORTHODOX</button>
+        <button class="stance" data-stance="southpaw">SOUTHPAW</button>
+      </div>
+
+      <div class="punch-grid" role="group" aria-label="Punches trained">
+        <button class="punch selected" data-punch="jab"><span class="number">1</span><span>JAB</span><small>LEAD STRAIGHT</small></button>
+        <button class="punch selected" data-punch="cross"><span class="number">2</span><span>CROSS</span><small>REAR STRAIGHT</small></button>
+        <button class="punch" data-punch="hook"><span class="number">3</span><span>HOOK</span><small>TURN THE HIP</small></button>
+        <button class="punch" data-punch="uppercut"><span class="number">4</span><span>UPPERCUT</span><small>SHORT &amp; SHARP</small></button>
+      </div>
+
+      <label class="note-label" for="note">CORNER NOTE <span id="noteCount">0/120</span></label>
+      <textarea id="note" maxlength="120" rows="3" placeholder="Body jab felt quick. Keep the right hand home."></textarea>
+      <button id="saveSession" class="save-button"><span>LOG SESSION</span><span aria-hidden="true">→</span></button>
+      <p class="local-note"><span></span> Saved privately on this device</p>
+    </section>
+
+    <section id="historyView" class="view" aria-labelledby="historyTitle">
+      <div class="history-heading">
+        <div><p class="section-kicker">YOUR CORNER</p><h2 id="historyTitle">Training history</h2></div>
+        <div class="round-total"><strong id="totalRounds">0</strong><span>TOTAL ROUNDS</span></div>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-button active" data-view="logView"><span class="nav-icon">＋</span><span>LOG</span></button>
+    <button class="nav-button" data-view="historyView"><span class="nav-icon">▤</span><span>HISTORY</span></button>
+  </nav>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
