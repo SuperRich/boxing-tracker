@@ -3,66 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#11110f">
-  <meta name="description" content="A fast, local-first boxing training log.">
+  <meta name="theme-color" content="#0b0b0a">
+  <meta name="description" content="Corner — local-first boxing and conditioning training.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="stylesheet" href="styles.css">
-  <title>Corner — Boxing Log</title>
+  <title>Corner — Boxing Training</title>
 </head>
 <body>
   <main class="app-shell">
     <header class="topbar">
-      <div>
-        <span class="eyebrow">TRAINING LOG</span>
-        <h1>CORNER<span>.</span></h1>
-      </div>
+      <div><span class="eyebrow">BOXING + CONDITIONING</span><h1>CORNER<span>.</span></h1></div>
       <div class="today-badge" id="todayBadge"></div>
     </header>
 
     <section id="logView" class="view active" aria-labelledby="logTitle">
-      <div class="session-head">
-        <div>
-          <p class="section-kicker">TODAY'S WORK</p>
-          <h2 id="logTitle">What landed?</h2>
+      <div class="hero">
+        <p class="section-kicker">TODAY'S WORK</p>
+        <h2 id="logTitle">Put the rounds in.</h2>
+        <p>Build a session from boxing and conditioning movements, then keep the work on record.</p>
+        <button class="primary-button" data-go="workoutsView"><span>BUILD A WORKOUT</span><span aria-hidden="true">→</span></button>
+      </div>
+      <div class="stat-strip">
+        <div><strong id="weekSessions">0</strong><span>SESSIONS<br>THIS WEEK</span></div>
+        <div><strong id="weekRounds">0</strong><span>ROUNDS<br>THIS WEEK</span></div>
+        <div><strong id="allSessions">0</strong><span>ALL-TIME<br>SESSIONS</span></div>
+      </div>
+      <div class="section-row"><div><p class="section-kicker">LAST SESSION</p><h3>Back in your corner</h3></div></div>
+      <div id="recentSession"></div>
+    </section>
+
+    <section id="workoutsView" class="view" aria-labelledby="workoutsTitle">
+      <div class="view-heading"><p class="section-kicker">CUSTOM WORKOUT</p><h2 id="workoutsTitle">Build your round.</h2><p>Mix skills and conditioning. Tap everything you trained.</p></div>
+      <div class="movement-section">
+        <div class="section-row"><h3>Boxing</h3><span class="category-dot boxing"></span></div>
+        <div class="movement-grid" id="boxingPresets"></div>
+      </div>
+      <div class="movement-section">
+        <div class="section-row"><h3>Conditioning</h3><span class="category-dot conditioning"></span></div>
+        <div class="movement-grid" id="conditioningPresets"></div>
+      </div>
+      <div class="movement-section" id="customSection">
+        <div class="section-row"><h3>Your movements</h3><span class="category-dot custom"></span></div>
+        <div class="movement-grid" id="customMovements"></div>
+        <button id="showMovementForm" class="outline-button">＋ ADD YOUR OWN MOVEMENT</button>
+        <form id="movementForm" class="movement-form" hidden>
+          <label>Movement name<input id="movementName" maxlength="40" required placeholder="e.g. Slip rope"></label>
+          <label>Category <input id="movementCategory" maxlength="30" placeholder="Optional"></label>
+          <div><button type="submit" class="small-primary">ADD MOVEMENT</button><button type="button" id="cancelMovement" class="text-button">CANCEL</button></div>
+        </form>
+      </div>
+      <div class="session-builder">
+        <div class="section-row"><div><p class="section-kicker">SESSION</p><h3 id="selectionCount">0 movements selected</h3></div></div>
+        <div class="metric-toggle" role="group" aria-label="Log session by rounds or time">
+          <button class="active" data-metric="rounds">ROUNDS</button><button data-metric="time">TIME</button>
         </div>
-        <div class="rounds-control" aria-label="Rounds completed">
-          <button id="roundMinus" aria-label="Remove a round">−</button>
-          <div><strong id="roundCount">6</strong><span>ROUNDS</span></div>
-          <button id="roundPlus" aria-label="Add a round">+</button>
+        <div class="amount-control">
+          <button id="amountMinus" aria-label="Decrease amount">−</button>
+          <div><strong id="amountValue">6</strong><span id="amountUnit">ROUNDS</span></div>
+          <button id="amountPlus" aria-label="Increase amount">+</button>
         </div>
+        <label class="note-label" for="note">CORNER NOTE <span id="noteCount">0/120</span></label>
+        <textarea id="note" maxlength="120" rows="3" placeholder="What clicked? What needs work?"></textarea>
+        <button id="saveSession" class="primary-button"><span>LOG SESSION</span><span aria-hidden="true">→</span></button>
+        <p class="local-note"><span></span> Saved privately on this device</p>
       </div>
+    </section>
 
-      <div class="stance-row" role="group" aria-label="Stance">
-        <button class="stance active" data-stance="orthodox">ORTHODOX</button>
-        <button class="stance" data-stance="southpaw">SOUTHPAW</button>
+    <section id="learnView" class="view" aria-labelledby="learnTitle">
+      <div class="view-heading"><p class="section-kicker">BOX &amp; BUILD</p><h2 id="learnTitle">Learn the craft.</h2><p>Work from fundamentals to pressure-tested skill.</p></div>
+      <div class="level-tabs" role="tablist" aria-label="Training level">
+        <button class="active" data-level="beginner" role="tab">BEGINNER</button><button data-level="intermediate" role="tab">INTERMEDIATE</button><button data-level="advanced" role="tab">ADVANCED</button>
       </div>
-
-      <div class="punch-grid" role="group" aria-label="Punches trained">
-        <button class="punch selected" data-punch="jab"><span class="number">1</span><span>JAB</span><small>LEAD STRAIGHT</small></button>
-        <button class="punch selected" data-punch="cross"><span class="number">2</span><span>CROSS</span><small>REAR STRAIGHT</small></button>
-        <button class="punch" data-punch="hook"><span class="number">3</span><span>HOOK</span><small>TURN THE HIP</small></button>
-        <button class="punch" data-punch="uppercut"><span class="number">4</span><span>UPPERCUT</span><small>SHORT &amp; SHARP</small></button>
-      </div>
-
-      <label class="note-label" for="note">CORNER NOTE <span id="noteCount">0/120</span></label>
-      <textarea id="note" maxlength="120" rows="3" placeholder="Body jab felt quick. Keep the right hand home."></textarea>
-      <button id="saveSession" class="save-button"><span>LOG SESSION</span><span aria-hidden="true">→</span></button>
-      <p class="local-note"><span></span> Saved privately on this device</p>
+      <div id="learnContent"></div>
+      <a class="drive-library" href="https://drive.google.com/drive/folders/1FdYTOoXv5P90eEuoniRG9FQfyhjn1S3-" target="_blank" rel="noopener"><span><small>FULL LIBRARY</small>Open Box &amp; Build</span><b aria-hidden="true">↗</b></a>
     </section>
 
     <section id="historyView" class="view" aria-labelledby="historyTitle">
-      <div class="history-heading">
-        <div><p class="section-kicker">YOUR CORNER</p><h2 id="historyTitle">Training history</h2></div>
-        <div class="round-total"><strong id="totalRounds">0</strong><span>TOTAL ROUNDS</span></div>
-      </div>
+      <div class="history-heading"><div><p class="section-kicker">YOUR CORNER</p><h2 id="historyTitle">Training history</h2></div><div class="round-total"><strong id="totalSessions">0</strong><span>SESSIONS</span></div></div>
       <div id="historyList" class="history-list"></div>
     </section>
   </main>
 
   <nav class="bottom-nav" aria-label="Main navigation">
-    <button class="nav-button active" data-view="logView"><span class="nav-icon">＋</span><span>LOG</span></button>
+    <button class="nav-button active" data-view="logView"><span class="nav-icon">⌂</span><span>LOG</span></button>
+    <button class="nav-button" data-view="workoutsView"><span class="nav-icon">＋</span><span>WORKOUTS</span></button>
+    <button class="nav-button" data-view="learnView"><span class="nav-icon">▶</span><span>LEARN</span></button>
     <button class="nav-button" data-view="historyView"><span class="nav-icon">▤</span><span>HISTORY</span></button>
   </nav>
   <div id="toast" role="status" aria-live="polite"></div>
