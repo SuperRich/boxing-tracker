@@ -751,7 +751,7 @@ function renderLearn() {
           <span>${escapeHtml(clip.title)}</span>
           <small>${playing ? "PLAYING" : "PLAY"}</small>
         </button>
-        ${playing ? `<div class="video-frame"><video controls playsinline preload="metadata" title="${escapeHtml(clip.title)}" src="https://drive.usercontent.google.com/download?id=${clip.id}&export=download"></video></div>` : ""}
+        ${playing ? `<div class="video-frame drive-preview"><iframe class="drive-preview-player" title="${escapeHtml(clip.title)}" src="https://drive.google.com/file/d/${clip.id}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></div>` : ""}
       </article>`;
     }).join("");
     return `<section class="topic-card ${open ? "open" : ""}">
