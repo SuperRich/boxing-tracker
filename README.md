@@ -6,7 +6,7 @@ Corner is a phone-first, local-only boxing training log. Sessions are stored in 
 
 The app must be opened from an HTTPS address (or `localhost`) for Chrome to offer installation.
 
-1. Publish the contents of this repo to any HTTPS static host, or use the hosted URL supplied with this project.
+1. Open **https://corner-boxing-log.richyhunter-rh.chatgpt.site** on your Android phone.
 2. Open that HTTPS URL in **Chrome on Android**.
 3. Tap the Chrome menu (⋮), then **Install app**. On some Chrome versions this reads **Add to Home screen** → **Install**.
 4. Open **Corner** from your home screen. After the first successful load it works offline.
