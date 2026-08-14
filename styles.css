@@ -97,7 +97,7 @@ textarea::placeholder { color:#66665f; }
 .level-intro p { margin:6px 0 0; color:var(--muted); font-size:11px; line-height:1.45; }
 .video-card { overflow:hidden; margin-bottom:13px; border:1px solid #41413a; background:var(--panel); box-shadow:0 13px 30px rgba(0,0,0,.25); }
 .video-frame { position:relative; aspect-ratio:16/9; background:#050505; }
-.video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.video-frame iframe,.video-frame video { position:absolute; inset:0; width:100%; height:100%; border:0; background:#050505; }
 .video-meta { position:relative; padding:16px 17px 18px; border-top:3px solid var(--red); }
 .video-meta span { color:var(--red); font-size:7px; font-weight:900; letter-spacing:.17em; }
 .video-meta h3 { margin-top:5px; font-size:24px; }
