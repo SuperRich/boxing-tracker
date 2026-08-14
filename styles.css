@@ -146,3 +146,21 @@ textarea::placeholder { color:#66665f; }
 @media (min-width:561px) { body { background:#070706; } .app-shell { border-inline:1px solid #242420; background:radial-gradient(circle at 50% -10%,#29241f 0,transparent 24%),var(--ink); } }
 @media (max-height:740px) { .topbar{height:84px}.hero{min-height:340px}.hero h2{font-size:48px}.view-heading{padding-top:22px} }
 @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+
+.topic-card { margin-bottom:9px; border:1px solid var(--line); background:var(--panel); }
+.topic-toggle { width:100%; min-height:78px; padding:14px 16px; display:grid; grid-template-columns:1fr auto; grid-template-rows:auto auto; gap:6px 12px; text-align:left; border:0; background:transparent; color:var(--paper); }
+.topic-toggle .folder-type { grid-column:1; color:var(--lime); font-size:7px; font-weight:900; letter-spacing:.16em; }
+.topic-toggle strong { grid-column:1; font:800 22px/1.05 "Barlow Condensed",sans-serif; text-transform:uppercase; }
+.topic-toggle em { grid-column:2; grid-row:1 / span 2; align-self:center; color:var(--muted); font:800 8px Inter,sans-serif; letter-spacing:.1em; font-style:normal; }
+.topic-card.open { border-color:#5a3a34; }
+.topic-card.open .topic-toggle { border-bottom:1px solid var(--line); }
+.clip-list { padding:8px; background:#10100e; }
+.clip-card { margin-bottom:7px; border:1px solid #2f2f2a; background:#171715; }
+.clip-card:last-child { margin-bottom:0; }
+.clip-row { width:100%; min-height:52px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; text-align:left; border:0; background:transparent; color:var(--paper); }
+.clip-row span { font:800 16px/1.15 "Barlow Condensed",sans-serif; text-transform:uppercase; }
+.clip-row small { flex:none; color:var(--red); font:900 8px Inter,sans-serif; letter-spacing:.12em; }
+.clip-card.playing { border-color:var(--red); }
+.clip-card.playing .clip-row small { color:var(--lime); }
+.clip-card .video-frame { border-top:1px solid #2f2f2a; }
+.learn-note { margin:18px 0 8px; }
